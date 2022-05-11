@@ -52,6 +52,7 @@ class Plugin {
 
 		wp_register_script( 'image-hover-effect', plugins_url( '/assets/js/hello-world.js', __DIR__ ), [ 'jquery' ], false, true );
 		wp_register_script( 'ihe-snap.svg-min', plugins_url( '/assets/js/snap.svg-min.js', __DIR__ ), [ 'jquery' ], false, true );
+		wp_register_script( 'ihe-hover', plugins_url( '/assets/js/hovers.js', __DIR__ ), [  ], false, true );
 
 	}
 

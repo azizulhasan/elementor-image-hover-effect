@@ -86,7 +86,7 @@ class Hello_World extends Widget_Base {
 	 * @return array Widget scripts dependencies.
 	 */
 	public function get_script_depends() {
-		return [ 'image-hover-effect', 'ihe-snap.svg-min' ];
+		return [ 'image-hover-effect', 'ihe-snap.svg-min', 'ihe-hover' ];
 	}
 
 	/**
@@ -293,7 +293,7 @@ class Hello_World extends Widget_Base {
 		if ( $settings['material_card'] ) {
 			echo "<section id='grid' class='grid clearfix'>";
 			foreach (  $settings['material_card'] as $item ) { ?>
-				<a href="#" data-path-hover="m 180,34.57627 -180,0 L 0,0 180,0 z" class="elementor-repeater-item-<?php echo $item['id'] ?>">
+				<a href="#" data-path-hover="m 180,34.57627 -180,0 L 0,0 180,0 z" class="elementor-repeater-item-">
 					<figure>
 						<img src="<?php echo $item['image']['url'] ?>" />
 						<svg viewBox="0 0 180 320" preserveAspectRatio="none"><path d="M 180,160 0,218 0,0 180,0 z"/></svg>
@@ -306,7 +306,9 @@ class Hello_World extends Widget_Base {
 				</a>
 			<?php }
 			echo "</section>";
-		}
+		}?>
+		
+		<?php
 
 		//echo Group_Control_Image_Size::get_attachment_image_html( $settings );
 
@@ -340,34 +342,7 @@ class Hello_World extends Widget_Base {
 				</a>
 			<# }) #>
 			</section>
-			<script>
-				(function() {
-	
-	function init() {
-		var speed = 250,
-			easing = mina.easeinout;
 
-		[].slice.call ( document.querySelectorAll( '#grid > a' ) ).forEach( function( el ) {
-			var s = Snap( el.querySelector( 'svg' ) ), path = s.select( 'path' ),
-				pathConfig = {
-					from : path.attr( 'd' ),
-					to : el.getAttribute( 'data-path-hover' )
-				};
-
-			el.addEventListener( 'mouseenter', function() {
-				path.animate( { 'path' : pathConfig.to }, speed, easing );
-			} );
-
-			el.addEventListener( 'mouseleave', function() {
-				path.animate( { 'path' : pathConfig.from }, speed, easing );
-			} );
-		} );
-	}
-
-	init();
-
-})();
-			</script>
 		<?php
 	}
 }

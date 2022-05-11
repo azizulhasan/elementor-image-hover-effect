@@ -8,7 +8,7 @@
  * Copyright 2014, Codrops
  * http://www.codrops.com
  */
-(function() {
+ (function() {
 	
 	function init() {
 		var speed = 250,
@@ -18,7 +18,7 @@
 			var s = Snap( el.querySelector( 'svg' ) ), path = s.select( 'path' ),
 				pathConfig = {
 					from : path.attr( 'd' ),
-					to : el.getAttribute( 'data-path-to' )
+					to : el.getAttribute( 'data-path-hover' )
 				};
 
 			el.addEventListener( 'mouseenter', function() {
