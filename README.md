@@ -1,4 +1,4 @@
-# Elementor Hello World Sample Plugin
+# Elementor Image Hover Effect Sample Plugin
 
 This is a sample plugin to demonstrate how you can write extentions (plugins) to add custom functionality to [Elementor](https://github.com/pojome/elementor/)
 
@@ -22,7 +22,7 @@ plugin.php
   * `/js` directory - Holds plugin Javascript Files
   * `/css` directory - Holds plugin CSS Files
 * `widgets` directory - Holds Plugin widgets
-  * `/hello-world.php` - Hello World demo Widget class
+  * `/hello-world.php` - Image Hover Effect demo Widget class
   * `/inline-editing.php` - Inline Editing demo Widget class
 * `index.php`	- Prevent direct access to directories
 * `image-hover-effect.php`	- Main plugin file, used as a loader if plugin minimum requirements are met.

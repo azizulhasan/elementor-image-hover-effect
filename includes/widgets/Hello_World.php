@@ -4,13 +4,14 @@ namespace ImageHoverEffect\Widgets;
 use Elementor\Widget_Base;
 use Elementor\Controls_Manager;
 use Elementor\Utils;
+use Elementor\Repeater;
 
 if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 
 /**
- * Elementor Hello World
+ * Elementor Image Hover Effect
  *
- * Elementor widget for hello world.
+ * Elementor widget for Image Hover Effect.
  *
  * @since 1.0.0
  */
@@ -26,7 +27,7 @@ class Hello_World extends Widget_Base {
 	 * @return string Widget name.
 	 */
 	public function get_name() {
-		return 'hello-world';
+		return 'image-hover-effect';
 	}
 
 	/**
@@ -39,7 +40,7 @@ class Hello_World extends Widget_Base {
 	 * @return string Widget title.
 	 */
 	public function get_title() {
-		return __( 'Hello World', 'image-hover-effect' );
+		return __( 'Image Hover Effect', 'image-hover-effect' );
 	}
 
 	/**
@@ -85,7 +86,27 @@ class Hello_World extends Widget_Base {
 	 * @return array Widget scripts dependencies.
 	 */
 	public function get_script_depends() {
-		return [ 'image-hover-effect' ];
+		return [ 'image-hover-effect', 'ihe-snap.svg-min' ];
+	}
+
+	/**
+	 * Retrieve the list of scripts the widget depended on.
+	 *
+	 * Used to set scripts dependencies required to run the widget.
+	 *
+	 * @since 1.0.0
+	 *
+	 * @access public
+	 *
+	 * @return array Widget scripts dependencies.
+	 */
+	public function get_style_depends() {
+
+		wp_register_style( 'ihe-normalize', plugins_url( '../assets/css/normalize.css', __DIR__ ), array(), '1.0.0', 'all' );
+		//wp_register_style( 'ihe-demo', plugins_url( '../assets/css/demo.css', __DIR__ ), array(), '1.0.0', 'all' );
+		wp_register_style( 'ihe-component', plugins_url( '../assets/css/component.css', __DIR__ ), array(), '1.0.0', 'all' );
+
+		return [ 'ihe-normalize', 'ihe-demo', 'ihe-component' ];
 	}
 
 	/**
@@ -106,31 +127,98 @@ class Hello_World extends Widget_Base {
 			]
 		);
 
-		$this->add_control(
-			'title',
-			[
-				'label' => __( 'Title', 'image-hover-effect' ),
-				'type' => Controls_Manager::TEXT,
-			]
-		);
-
-		$this->add_control(
+		$repeater = new Repeater();
+        $repeater->add_control(
 			'image',
 			[
-				'label' => esc_html__( 'Choose Image', 'plugin-name' ),
+				'label' => __( 'Choose Image', 'plugin-domain' ),
 				'type' => Controls_Manager::MEDIA,
 				'default' => [
 					'url' => Utils::get_placeholder_image_src(),
 				],
 			]
 		);
-
-		$this->add_group_control(
-			\Elementor\Group_Control_Image_Size::get_type(),
+		$repeater->add_control(
+			'card_title',
 			[
-				'name' => 'image',
-				'default' => 'large',
-				'separator' => 'none',
+				'label' => __( 'Title', 'wpac-material-cards' ),
+				'type' => Controls_Manager::TEXT,
+				'default' => __( 'John Doe.', 'wpac-material-cards' ),
+				'placeholder' => __( 'Type your title here', 'wpac-material-cards' ),
+			]
+		);
+        
+        $repeater->add_control(
+			'card_description',
+			[
+				'label' => __( 'Description', 'plugin-domain' ),
+				'type' => Controls_Manager::TEXTAREA,
+				'rows' => 10,
+				'default' => __( 'He has appeared in more than 100 films and television shows, including The Deer Hunter, Annie Hall, The Prophecy trilogy, The Dogs of War ...', 'plugin-domain' ),
+				'placeholder' => __( 'Type your description here', 'plugin-domain' ),
+			]
+		);
+        $repeater->add_control(
+			'card_color',
+			[
+				'label' => __( 'Card Color', 'plugin-domain' ),
+				'type' => Controls_Manager::SELECT,
+				'default' => 'Red',
+				'options' => [
+					'Red'  => __( 'Red', 'plugin-domain' ),
+					'Pink' => __( 'Pink', 'plugin-domain' ),
+					'Purple' => __( 'Purple', 'plugin-domain' ),
+					'Deep-Purple' => __( 'Deep-Purple', 'plugin-domain' ),
+					'Indigo' => __( 'Indigo', 'plugin-domain' ),
+                    'Blue'  => __( 'Blue', 'plugin-domain' ),
+					'Light-Blue' => __( 'Light-Blue', 'plugin-domain' ),
+					'Cyan' => __( 'Cyan', 'plugin-domain' ),
+					'Teal' => __( 'Teal', 'plugin-domain' ),
+					'Green' => __( 'Green', 'plugin-domain' ),
+                    'Light-Green'  => __( 'Light-Green', 'plugin-domain' ),
+					'Lime' => __( 'Lime', 'plugin-domain' ),
+					'Yellow' => __( 'Yellow', 'plugin-domain' ),
+					'Amber' => __( 'Amber', 'plugin-domain' ),
+					'Orange' => __( 'Orange', 'plugin-domain' ),
+                    'Deep-Orange' => __( 'Deep-Orange', 'plugin-domain' ),
+					'Brown' => __( 'Brown', 'plugin-domain' ),
+					'Grey' => __( 'Grey', 'plugin-domain' ),
+					'Blue-Grey' => __( 'Blue-Grey', 'plugin-domain' ),
+				],
+			]
+		);
+		$repeater->add_control(
+			'link_twitter',
+			[
+				'label' => __( 'URL', 'plugin-domain' ),
+				'type' => Controls_Manager::URL,
+				'placeholder' => __( 'https://twitter.com', 'plugin-domain' ),
+				'show_external' => true,
+				'default' => [
+					'url' => 'https://twitter.com',
+					'is_external' => true,
+					'nofollow' => true,
+				],
+			]
+		);
+		
+		$this->add_control(
+			'material_card',
+			[
+				'label' => __( 'Cards List', 'plugin-domain' ),
+				'type' => Controls_Manager::REPEATER,
+				'fields' => $repeater->get_controls(),
+				'default' => [
+					[
+						'card_title' => __( 'John Doe.', 'plugin-domain' ),
+                        'card_description' => __( 'He has appeared in more than 100 films and television shows, including The Deer Hunter, Annie Hall, The Prophecy trilogy, The Dogs of War ...', 'plugin-domain' ),
+					],
+					[
+						'card_title' => __( 'John Doe.', 'plugin-domain' ),
+                        'card_description' => __( 'He has appeared in more than 100 films and television shows, including The Deer Hunter, Annie Hall, The Prophecy trilogy, The Dogs of War ...', 'plugin-domain' ),
+					],
+				],
+				'title_field' => '{{{ card_title }}}',
 			]
 		);
 
@@ -202,10 +290,25 @@ class Hello_World extends Widget_Base {
 	protected function render() {
 		$settings = $this->get_settings_for_display();
 
-		echo '<div class="title">';
-		echo $settings['title'];
-		echo '</div>';
-		echo \Elementor\Group_Control_Image_Size::get_attachment_image_html( $settings );
+		if ( $settings['material_card'] ) {
+			echo "<section id='grid' class='grid clearfix'>";
+			foreach (  $settings['material_card'] as $item ) { ?>
+				<a href="#" data-path-hover="m 180,34.57627 -180,0 L 0,0 180,0 z" class="elementor-repeater-item-<?php echo $item['id'] ?>">
+					<figure>
+						<img src="<?php echo $item['image']['url'] ?>" />
+						<svg viewBox="0 0 180 320" preserveAspectRatio="none"><path d="M 180,160 0,218 0,0 180,0 z"/></svg>
+						<figcaption>
+							<h2><?php echo $item['card_title'] ?></h2>
+							<p><?php echo $item['card_description'] ?></p>
+							<button>View</button>
+						</figcaption>
+					</figure>
+				</a>
+			<?php }
+			echo "</section>";
+		}
+
+		//echo Group_Control_Image_Size::get_attachment_image_html( $settings );
 
 	}
 
@@ -220,25 +323,51 @@ class Hello_World extends Widget_Base {
 	 */
 	protected function content_template() {
 		?>
-		<#
-		var image = {
-			id: settings.image.id,
-			url: settings.image.url,
-			size: settings.image_size,
-			dimension: settings.image_custom_dimension,
-			model: view.getEditModel()
-		};
 
-		var image_url = elementor.imagesManager.getImageUrl( image );
+		
+			<section id='grid' class='grid clearfix'>
+			<# _.each( settings.material_card, function( item, index ) { #>
+				<a href="#" data-path-hover="m 180,34.57627 -180,0 L 0,0 180,0 z" class="elementor-repeater-item-{{{item.id}}}">
+					<figure>
+						<img src="{{{item.image.url}}}" />
+						<svg viewBox="0 0 180 320" preserveAspectRatio="none"><path d="M 180,160 0,218 0,0 180,0 z"/></svg>
+						<figcaption>
+							<h2>{{{item.card_title}}}</h2>
+							<p>{{{item.card_description}}}</p>
+							<button>View</button>
+						</figcaption>
+					</figure>
+				</a>
+			<# }) #>
+			</section>
+			<script>
+				(function() {
+	
+	function init() {
+		var speed = 250,
+			easing = mina.easeinout;
 
-		if ( ! image_url ) {
-			return;
-		}
-		#>
-		<div class="title">
-			{{{ settings.title }}}
-		</div>
-		<img src="{{{ image_url }}}" />
+		[].slice.call ( document.querySelectorAll( '#grid > a' ) ).forEach( function( el ) {
+			var s = Snap( el.querySelector( 'svg' ) ), path = s.select( 'path' ),
+				pathConfig = {
+					from : path.attr( 'd' ),
+					to : el.getAttribute( 'data-path-hover' )
+				};
+
+			el.addEventListener( 'mouseenter', function() {
+				path.animate( { 'path' : pathConfig.to }, speed, easing );
+			} );
+
+			el.addEventListener( 'mouseleave', function() {
+				path.animate( { 'path' : pathConfig.from }, speed, easing );
+			} );
+		} );
+	}
+
+	init();
+
+})();
+			</script>
 		<?php
 	}
 }

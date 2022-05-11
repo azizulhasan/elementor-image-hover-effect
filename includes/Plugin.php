@@ -49,7 +49,10 @@ class Plugin {
 	 * @access public
 	 */
 	public function widget_scripts() {
+
 		wp_register_script( 'image-hover-effect', plugins_url( '/assets/js/hello-world.js', __DIR__ ), [ 'jquery' ], false, true );
+		wp_register_script( 'ihe-snap.svg-min', plugins_url( '/assets/js/snap.svg-min.js', __DIR__ ), [ 'jquery' ], false, true );
+
 	}
 
 	/**
