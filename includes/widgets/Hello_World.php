@@ -103,7 +103,7 @@ class Hello_World extends Widget_Base {
 	public function get_style_depends() {
 
 		wp_register_style( 'ihe-normalize', plugins_url( '../assets/css/normalize.css', __DIR__ ), array(), '1.0.0', 'all' );
-		//wp_register_style( 'ihe-demo', plugins_url( '../assets/css/demo.css', __DIR__ ), array(), '1.0.0', 'all' );
+		wp_register_style( 'ihe-demo', plugins_url( '../assets/css/demo.css', __DIR__ ), array(), '1.0.0', 'all' );
 		wp_register_style( 'ihe-component', plugins_url( '../assets/css/component.css', __DIR__ ), array(), '1.0.0', 'all' );
 
 		return [ 'ihe-normalize', 'ihe-demo', 'ihe-component' ];
