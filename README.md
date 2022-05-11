@@ -5,16 +5,18 @@ This is a sample plugin to demonstrate how you can write extentions (plugins) to
 Plugin Structure: 
 ```
 assets/
-      /js   
+      /js   Holds plugin JS Files
       /css  Holds plugin CSS Files
+      /img Holds plugin Image Files
       
-widgets/
-      /hello-world.php
-      /inline-editing.php
-      
+includes
+  /widgets/
+    /hello-world.php
+    /inline-editing.php
+  Plugin.php
 index.php
 image-hover-effect.php
-plugin.php
+
 ```
 
 
