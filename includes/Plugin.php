@@ -2,7 +2,7 @@
 namespace ImageHoverEffect;
 
 use ImageHoverEffect\PageSettings\Page_Settings;
-use ImageHoverEffect\Widgets\Hello_World;
+use ImageHoverEffect\Widgets\Demo_One;
 
 /**
  * Class Plugin
@@ -108,7 +108,7 @@ class Plugin {
 	 */
 	public function register_widgets( $widgets_manager ) {
 		// Register Widgets
-		$widgets_manager->register( new Widgets\Hello_World() );
+		$widgets_manager->register( new Widgets\Demo_One() );
 		$widgets_manager->register( new Widgets\Inline_Editing() );
 	}
 
