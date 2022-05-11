@@ -1,0 +1,18 @@
+{
+    "name": "user/image-hover-effect",
+    "autoload": {
+        "psr-4": {
+            "ImageHoverEffect\\": "includes",
+            "ImageHoverEffect\\PageSettings\\":"includes/page-settings",
+            "ImageHoverEffect\\Widgets\\":"includes/widgets"
+
+        }
+    },
+    "authors": [
+        {
+            "name": "Azizul Hasan",
+            "email": "azizulhasan.cr@gmail.com"
+        }
+    ],
+    "require": {}
+}
