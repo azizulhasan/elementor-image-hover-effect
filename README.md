@@ -24,7 +24,7 @@ For now only 3 image hover effect added. You can search on Elementor widget sear
 `image hover effect `.
 
 ## Demo: 
-[Image Hover Effect](./assets/img/elementor_image_hover_effect_demo.png)
+![Image Hover Effect](./assets/img/elementor_image_hover_effect_demo.png)
 
 ## 🛠️ How to Install
 1. Download the source zip folder from this repository
