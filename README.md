@@ -11,8 +11,9 @@ assets/
       
 includes
   /widgets/
-    /hello-world.php
-    /inline-editing.php
+    /Demo_One.php
+    /Demo_Two.php
+    /Demo_Three.php
   Plugin.php
 index.php
 image-hover-effect.php
