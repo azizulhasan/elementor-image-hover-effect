@@ -1,6 +1,6 @@
 # 🎴 Elementor Image Hover Effect Sample Plugin
 
-This is a sample plugin to demonstrate how you can write extentions (plugins) to add custom functionality to [Elementor](https://github.com/pojome/elementor/)
+This is a simple addon plugin of Elementor to add `Image Hover Effect` functionality to [Elementor](https://github.com/pojome/elementor/)
 
 ## 🛠️ Plugin Structure: 
 ```
@@ -19,7 +19,12 @@ index.php
 image-hover-effect.php
 
 ```
+## How To Search:
+For now only 3 image hover effect added. You can search on Elementor widget search bar by keyword
+`image hover effect `.
 
+## Demo: 
+[Image Hover Effect](./assets/img/elementor_image_hover_effect_demo.png)
 
 ## 🛠️ How to Install
 1. Download the source zip folder from this repository
