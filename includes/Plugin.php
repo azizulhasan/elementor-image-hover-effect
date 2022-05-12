@@ -1,7 +1,7 @@
 <?php
 namespace ImageHoverEffect;
 
-use ImageHoverEffect\PageSettings\Page_Settings;
+
 use ImageHoverEffect\Widgets\Demo_One;
 use ImageHoverEffect\Widgets\Demo_Two;
 use ImageHoverEffect\Widgets\Demo_Three;
@@ -10,14 +10,14 @@ use ImageHoverEffect\Widgets\Demo_Three;
  * Class Plugin
  *
  * Main Plugin class
- * @since 1.2.0
+ * @since 1.0.0
  */
 class Plugin {
 
 	/**
 	 * Instance
 	 *
-	 * @since 1.2.0
+	 * @since 1.0.0
 	 * @access private
 	 * @static
 	 *
@@ -30,7 +30,7 @@ class Plugin {
 	 *
 	 * Ensures only one instance of the class is loaded or can be loaded.
 	 *
-	 * @since 1.2.0
+	 * @since 1.0.0
 	 * @access public
 	 *
 	 * @return Plugin An instance of the class.
@@ -47,7 +47,7 @@ class Plugin {
 	 *
 	 * Load required plugin's core files.
 	 *
-	 * @since 1.2.0
+	 * @since 1.0.0
 	 * @access public
 	 */
 	public function widget_scripts() {
@@ -64,7 +64,7 @@ class Plugin {
 	 *
 	 * Register new Elementor widgets.
 	 *
-	 * @since 1.2.0
+	 * @since 1.0.0
 	 * @access public
 	 *
 	 * @param Widgets_Manager $widgets_manager Elementor widgets manager.
@@ -83,7 +83,7 @@ class Plugin {
 	 *
 	 * Register plugin action hooks and filters
 	 *
-	 * @since 1.2.0
+	 * @since 1.0.0
 	 * @access public
 	 */
 	public function __construct() {

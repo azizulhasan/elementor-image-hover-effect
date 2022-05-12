@@ -1,11 +1,11 @@
 <?php
 /**
  * Plugin Name: Elementor Image Hover Effect
- * Description: Elementor sample plugin.
- * Plugin URI:  https://elementor.com/
- * Version:     1.2.1
+ * Description: Elementor Image Hover Effect.
+ * Plugin URI:  https://github.com/azizulhasan/elementor-image-hover-effect
+ * Version:     1.0.0
  * Author:      Azizul Hasan
- * Author URI:  https://elementor.com/
+ * Author URI:  http://azizulhasan.com/
  * Text Domain: image-hover-effect
  * Elementor tested up to: 3.5.0
  * Elementor Pro tested up to: 3.5.0
@@ -25,22 +25,22 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
  * You should only modify the constants to match your plugin's needs.
  *
  * Any custom code should go inside Plugin Class in the plugin.php file.
- * @since 1.2.0
+ * @since 1.0.0
  */
 final class Elementor_Image_Hover_Effect {
 
 	/**
 	 * Plugin Version
 	 *
-	 * @since 1.2.1
+	 * @since 1.0.0
 	 * @var string The plugin version.
 	 */
-	const VERSION = '1.2.1';
+	const VERSION = '1.0.0';
 
 	/**
 	 * Minimum Elementor Version
 	 *
-	 * @since 1.2.0
+	 * @since 1.0.0
 	 * @var string Minimum Elementor version required to run the plugin.
 	 */
 	const MINIMUM_ELEMENTOR_VERSION = '3.0.0';
@@ -48,7 +48,7 @@ final class Elementor_Image_Hover_Effect {
 	/**
 	 * Minimum PHP Version
 	 *
-	 * @since 1.2.0
+	 * @since 1.0.0
 	 * @var string Minimum PHP version required to run the plugin.
 	 */
 	const MINIMUM_PHP_VERSION = '7.0';
@@ -74,7 +74,7 @@ final class Elementor_Image_Hover_Effect {
 	 *
 	 * Fired by `plugins_loaded` action hook.
 	 *
-	 * @since 1.2.0
+	 * @since 1.0.0
 	 * @access public
 	 */
 	public function init() {

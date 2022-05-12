@@ -149,7 +149,7 @@ class Demo_Three extends Widget_Base
                 'label' => __('Description', 'image-hover-effect'),
                 'type' => Controls_Manager::TEXTAREA,
                 'rows' => 10,
-                'default' => __('He has appeared in more than 100 films and television shows', 'image-hover-effect'),
+                'default' => __('He has appeared in more than 100 films', 'image-hover-effect'),
                 'placeholder' => __('Type your description here', 'image-hover-effect'),
             ]
         );
@@ -163,22 +163,22 @@ class Demo_Three extends Widget_Base
                 'default' => [
                     [
                         'card_title' => __('John Doe.', 'image-hover-effect'),
-                        'card_description' => __('He has appeared in more than 100 films and television shows', 'image-hover-effect'),
+                        'card_description' => __('He has appeared in more than 100 films', 'image-hover-effect'),
                         'url' => plugins_url('../assets/img/1.png', __DIR__),
                     ],
                     [
                         'card_title' => __('John Doe.', 'image-hover-effect'),
-                        'card_description' => __('He has appeared in more than 100 films and television shows', 'image-hover-effect'),
+                        'card_description' => __('He has appeared in more than 100 films', 'image-hover-effect'),
                         'url' => plugins_url('../assets/img/2.png', __DIR__),
                     ],
                     [
                         'card_title' => __('John Doe.', 'image-hover-effect'),
-                        'card_description' => __('He has appeared in more than 100 films and television shows', 'image-hover-effect'),
+                        'card_description' => __('He has appeared in more than 100 films', 'image-hover-effect'),
                         'url' => plugins_url('../assets/img/3.png', __DIR__),
                     ],
                     [
                         'card_title' => __('John Doe.', 'image-hover-effect'),
-                        'card_description' => __('He has appeared in more than 100 films and television shows', 'image-hover-effect'),
+                        'card_description' => __('He has appeared in more than 100 films', 'image-hover-effect'),
                         'url' => plugins_url('../assets/img/4.png', __DIR__),
                     ],
                 ],
