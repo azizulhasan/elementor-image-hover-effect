@@ -52,14 +52,12 @@ class Plugin {
 	 */
 	public function widget_scripts() {
 
-		wp_register_script( 'image-hover-effect', plugins_url( '/assets/js/hello-world.js', __DIR__ ), [ 'jquery' ], false, true );
 		wp_register_script( 'ihe-snap.svg-min', plugins_url( '/assets/js/snap.svg-min.js', __DIR__ ), [ 'jquery' ], false, true );
 		wp_register_script( 'ihe-hover', plugins_url( '/assets/js/hovers.js', __DIR__ ), [  ], false, true );
 
+		wp_enqueue_script( 'ihe-snap.svg-min' );
+		wp_enqueue_script( 'ihe-hover' );
 	}
-
-
-
 
 	/**
 	 * Register Widgets
@@ -92,7 +90,7 @@ class Plugin {
 
 		// Register widget scripts
 		add_action( 'elementor/frontend/after_register_scripts', [ $this, 'widget_scripts' ] );
-
+		
 		// Register widgets
 		add_action( 'elementor/widgets/register', [ $this, 'register_widgets' ] );
 

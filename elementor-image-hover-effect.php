@@ -96,7 +96,6 @@ final class Elementor_Image_Hover_Effect {
 			add_action( 'admin_notices', array( $this, 'admin_notice_minimum_php_version' ) );
 			return;
 		}
-
 		// Once we get here, We have passed all validation checks so we can safely include our plugin
 		//require_once( 'includes/plugin.php' );
 		// Instantiate Plugin Class
