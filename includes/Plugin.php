@@ -3,6 +3,8 @@ namespace ImageHoverEffect;
 
 use ImageHoverEffect\PageSettings\Page_Settings;
 use ImageHoverEffect\Widgets\Demo_One;
+use ImageHoverEffect\Widgets\Demo_Two;
+use ImageHoverEffect\Widgets\Demo_Three;
 
 /**
  * Class Plugin
@@ -56,45 +58,8 @@ class Plugin {
 
 	}
 
-	/**
-	 * Editor scripts
-	 *
-	 * Enqueue plugin javascripts integrations for Elementor editor.
-	 *
-	 * @since 1.2.1
-	 * @access public
-	 */
-	public function editor_scripts() {
-		add_filter( 'script_loader_tag', [ $this, 'editor_scripts_as_a_module' ], 10, 2 );
 
-		wp_enqueue_script(
-			'image-hover-effect-editor',
-			plugins_url( '/assets/js/editor/editor.js', __DIR__ ),
-			[
-				'elementor-editor',
-			],
-			'1.2.1',
-			true
-		);
-	}
 
-	/**
-	 * Force load editor script as a module
-	 *
-	 * @since 1.2.1
-	 *
-	 * @param string $tag
-	 * @param string $handle
-	 *
-	 * @return string
-	 */
-	public function editor_scripts_as_a_module( $tag, $handle ) {
-		if ( 'image-hover-effect-editor' === $handle ) {
-			$tag = str_replace( '<script', '<script type="module"', $tag );
-		}
-
-		return $tag;
-	}
 
 	/**
 	 * Register Widgets
@@ -109,20 +74,11 @@ class Plugin {
 	public function register_widgets( $widgets_manager ) {
 		// Register Widgets
 		$widgets_manager->register( new Widgets\Demo_One() );
-		$widgets_manager->register( new Widgets\Inline_Editing() );
+		$widgets_manager->register( new Widgets\Demo_Two() );
+		$widgets_manager->register( new Widgets\Demo_Three() );
+
 	}
 
-	/**
-	 * Add page settings controls
-	 *
-	 * Register new settings for a document page settings.
-	 *
-	 * @since 1.2.1
-	 * @access private
-	 */
-	private function add_page_settings_controls() {
-        new Page_Settings();
-	}
 
 	/**
 	 *  Plugin class constructor
@@ -140,10 +96,6 @@ class Plugin {
 		// Register widgets
 		add_action( 'elementor/widgets/register', [ $this, 'register_widgets' ] );
 
-		// Register editor scripts
-		//add_action( 'elementor/editor/after_enqueue_scripts', [ $this, 'editor_scripts' ] );
-		
-		$this->add_page_settings_controls();
 	}
 }
 

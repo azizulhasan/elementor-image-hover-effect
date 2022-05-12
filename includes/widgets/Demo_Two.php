@@ -15,7 +15,7 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
  *
  * @since 1.0.0
  */
-class Demo_One extends Widget_Base {
+class Demo_Two extends Widget_Base {
 
 	/**
 	 * Retrieve the widget name.
@@ -27,7 +27,7 @@ class Demo_One extends Widget_Base {
 	 * @return string Widget name.
 	 */
 	public function get_name() {
-		return 'image-hover-effect-one';
+		return 'image-hover-effect-two';
 	}
 
 	/**
@@ -40,7 +40,7 @@ class Demo_One extends Widget_Base {
 	 * @return string Widget title.
 	 */
 	public function get_title() {
-		return __( 'Image Hover Effect 1', 'image-hover-effect' );
+		return __( 'Image Hover Effect 2', 'image-hover-effect' );
 	}
 
 	/**
@@ -399,13 +399,13 @@ class Demo_One extends Widget_Base {
 		$settings = $this->get_settings_for_display();
 
 		if ( $settings['material_card'] ) {
-			echo "<div class='demo-1'>";
+			echo "<div class='demo-2'>";
 			echo "<section id='grid' class='grid clearfix'>";
 			foreach (  $settings['material_card'] as $item ) { ?>
-				<a href="#" data-path-hover="m 180,34.57627 -180,0 L 0,0 180,0 z" class="elementor-repeater-item-">
+				<a href="#" data-path-hover="m 0,0 0,47.7775 c 24.580441,3.12569 55.897012,-8.199417 90,-8.199417 34.10299,0 65.41956,11.325107 90,8.199417 L 180,0 z">
 					<figure>
 						<img src="<?php echo $item['image']['url'] ?>" />
-						<svg viewBox="0 0 180 320" preserveAspectRatio="none"><path d="M 180,160 0,218 0,0 180,0 z"/></svg>
+						<svg viewBox="0 0 180 320" preserveAspectRatio="none"><path d="m 0,0 0,171.14385 c 24.580441,15.47138 55.897012,24.75772 90,24.75772 34.10299,0 65.41956,-9.28634 90,-24.75772 L 180,0 0,0 z"/></svg>
 						<figcaption>
 							<h2><?php echo $item['card_title'] ?></h2>
 							<p><?php echo $item['card_description'] ?></p>
@@ -462,13 +462,13 @@ class Demo_One extends Widget_Base {
 	protected function content_template() {
 		?>
 
-		<div class='demo-1'>
+			<div class="demo-2">
 			<section id='grid' class='grid clearfix'>
 			<# _.each( settings.material_card, function( item, index ) { #>
-				<a href="#" data-path-hover="m 180,34.57627 -180,0 L 0,0 180,0 z" class="elementor-repeater-item-{{{item.id}}}">
+				<a href="#" data-path-hover="m 0,0 0,47.7775 c 24.580441,3.12569 55.897012,-8.199417 90,-8.199417 34.10299,0 65.41956,11.325107 90,8.199417 L 180,0 z">
 					<figure>
 						<img src="{{{item.image.url}}}" />
-						<svg viewBox="0 0 180 320" preserveAspectRatio="none"><path d="M 180,160 0,218 0,0 180,0 z"/></svg>
+						<svg viewBox="0 0 180 320" preserveAspectRatio="none"><path d="m 0,0 0,171.14385 c 24.580441,15.47138 55.897012,24.75772 90,24.75772 34.10299,0 65.41956,-9.28634 90,-24.75772 L 180,0 0,0 z"/></svg>
 						<figcaption>
 							<h2>{{{item.card_title}}}</h2>
 							<p>{{{item.card_description}}}</p>
