@@ -17,7 +17,7 @@ if (!defined('ABSPATH')) {
  *
  * @since 1.0.0
  */
-class Demo_Two extends Widget_Base
+class Image_Hovor_Effect extends Widget_Base
 {
 
     /**
@@ -31,7 +31,7 @@ class Demo_Two extends Widget_Base
      */
     public function get_name()
     {
-        return 'image-hover-effect-two';
+        return 'image-hover-effect-one';
     }
 
     /**
@@ -45,7 +45,7 @@ class Demo_Two extends Widget_Base
      */
     public function get_title()
     {
-        return __('Image Hover Effect 2', 'image-hover-effect');
+        return __('Image Hover Effect', 'image-hover-effect');
     }
 
     /**
@@ -111,9 +111,36 @@ class Demo_Two extends Widget_Base
      */
     protected function register_controls()
     {
+
         /**
-         * Content
-         */
+		 * Image Hover Effect Section
+		 */
+        $this->start_controls_section(
+            'hover_effect_section',
+            [
+                'label' => __('Effect Style', 'image-hover-effect'),
+                'tab' => Controls_Manager::TAB_CONTENT,
+            ]
+        );
+
+        $this->add_control(
+			'image_hover_effect_demos',
+			[
+				'label' => __( 'Hover Effect Demos', 'image-hover-effect' ),
+				'type' => Controls_Manager::SELECT,
+				'default' => 'demo_one',
+				'options' => [
+					'demo_one'  => __( 'Demo One', 'image-hover-effect' ),
+					'demo_two' => __( 'Demo Two', 'image-hover-effect' ),
+					'demo_three' => __( 'Demo Three', 'image-hover-effect' )
+				],
+                
+			]
+		);
+        $this->end_controls_section();
+		/**
+		 * Content
+		 */
         $this->start_controls_section(
             'content_section',
             [
@@ -155,7 +182,7 @@ class Demo_Two extends Widget_Base
         );
 
         $this->add_control(
-            'material_card',
+            'image_hover_effect_card',
             [
                 'label' => __('Cards List', 'image-hover-effect'),
                 'type' => Controls_Manager::REPEATER,
@@ -200,23 +227,6 @@ class Demo_Two extends Widget_Base
         );
 
         $this->add_control(
-            'text_transform',
-            [
-                'label' => __('Text Transform', 'image-hover-effect'),
-                'type' => Controls_Manager::SELECT,
-                'default' => 'uppercase',
-                'options' => [
-                    '' => __('None', 'image-hover-effect'),
-                    'uppercase' => __('UPPERCASE', 'image-hover-effect'),
-                    'lowercase' => __('lowercase', 'image-hover-effect'),
-                    'capitalize' => __('Capitalize', 'image-hover-effect'),
-                ],
-                'selectors' => [
-                    '{{WRAPPER}} #grid a figure figcaption h2' => 'text-transform: {{VALUE}};',
-                ],
-            ]
-        );
-        $this->add_control(
             'alignment',
             [
                 'type' => Controls_Manager::CHOOSE,
@@ -246,8 +256,8 @@ class Demo_Two extends Widget_Base
             [
                 'label' => __('Heading Color', 'image-hover-effect'),
                 'type' => Controls_Manager::COLOR,
-                'default' => 'blue',
-                'selectors' => [
+				'default' => 'blue',
+				'selectors' => [
                     '{{WRAPPER}} #grid a figure figcaption h2' => 'color: {{VALUE}} !important;',
                 ],
 
@@ -264,24 +274,6 @@ class Demo_Two extends Widget_Base
             [
                 'label' => __('Description', 'image-hover-effect'),
                 'tab' => Controls_Manager::TAB_STYLE,
-            ]
-        );
-
-        $this->add_control(
-            'description_text_transform',
-            [
-                'label' => __('Text Transform', 'image-hover-effect'),
-                'type' => Controls_Manager::SELECT,
-                'default' => 'capitalize',
-                'options' => [
-                    '' => __('None', 'image-hover-effect'),
-                    'uppercase' => __('UPPERCASE', 'image-hover-effect'),
-                    'lowercase' => __('lowercase', 'image-hover-effect'),
-                    'capitalize' => __('Capitalize', 'image-hover-effect'),
-                ],
-                'selectors' => [
-                    '{{WRAPPER}} #grid a figure figcaption p' => 'text-transform: {{VALUE}};',
-                ],
             ]
         );
         $this->add_control(
@@ -314,12 +306,45 @@ class Demo_Two extends Widget_Base
             [
                 'label' => __('Color', 'image-hover-effect'),
                 'type' => Controls_Manager::COLOR,
-                'default' => 'black',
-                'selectors' => [
+				'default' => 'black',
+				'selectors' => [
                     '{{WRAPPER}} #grid a figure figcaption p' => 'color: {{VALUE}} !important;',
                 ],
             ]
         );
+
+        $this->end_controls_section();
+
+
+        /**
+         * Typography
+         */
+
+        $this->start_controls_section(
+			'typography_section',
+			[
+				'label' => __( 'Typography Controls', 'plugin-name' ),
+				'tab' => \Elementor\Controls_Manager::TAB_STYLE,
+			]
+		);
+        $this->add_group_control(
+			\Elementor\Group_Control_Typography::get_type(),
+			[
+				'name' => 'title_typo',
+				'label' => __( 'Title', 'plugin-domain' ),
+				'scheme' => \Elementor\Core\Schemes\Typography::TYPOGRAPHY_1,
+				'selector' => '{{WRAPPER}} #grid a figure figcaption h2',
+			]
+		);
+        $this->add_group_control(
+			\Elementor\Group_Control_Typography::get_type(),
+			[
+				'name' => 'subtitle_typo',
+				'label' => __( 'Description', 'plugin-domain' ),
+				'scheme' => \Elementor\Core\Schemes\Typography::TYPOGRAPHY_2,
+				'selector' => '{{WRAPPER}} #grid a figure figcaption p',
+			]
+		);
 
         $this->end_controls_section();
 
@@ -338,22 +363,16 @@ class Demo_Two extends Widget_Base
     {
         $settings = $this->get_settings_for_display();
 
-        if ($settings['material_card']) {
-            echo "<div class='demo-2'>";
+        if ($settings['image_hover_effect_card']) {
+
+            $render_path = plugin_dir_path( __DIR__ ). 'templates/render/';
+            echo "<div class='{$settings['image_hover_effect_demos']}'>";
             echo "<section id='grid' class='grid clearfix'>";
-            foreach ($settings['material_card'] as $item) {?>
-				<a href="#" data-path-hover="m 0,0 0,47.7775 c 24.580441,3.12569 55.897012,-8.199417 90,-8.199417 34.10299,0 65.41956,11.325107 90,8.199417 L 180,0 z">
-					<figure>
-						<img src="<?php echo $item['image']['url'] ?>" />
-						<svg viewBox="0 0 180 320" preserveAspectRatio="none"><path d="m 0,0 0,171.14385 c 24.580441,15.47138 55.897012,24.75772 90,24.75772 34.10299,0 65.41956,-9.28634 90,-24.75772 L 180,0 0,0 z"/></svg>
-						<figcaption>
-							<h2><?php echo $item['card_title'] ?></h2>
-							<p><?php echo $item['card_description'] ?></p>
-							<button>View</button>
-						</figcaption>
-					</figure>
-				</a>
-			<?php }
+            foreach ($settings['image_hover_effect_card'] as $item) {
+
+                include  $render_path.$settings['image_hover_effect_demos'] .'.php';
+                
+            }
             echo "</section>";
             echo "</div>";
         }?>
@@ -402,10 +421,26 @@ class Demo_Two extends Widget_Base
     {
         ?>
 
-			<div class="demo-2">
+		
+			<# var template_name = settings.image_hover_effect_demos#>
+            <div class='{{{template_name}}}'>
 			<section id='grid' class='grid clearfix'>
-			<# _.each( settings.material_card, function( item, index ) { #>
-				<a href="#" data-path-hover="m 0,0 0,47.7775 c 24.580441,3.12569 55.897012,-8.199417 90,-8.199417 34.10299,0 65.41956,11.325107 90,8.199417 L 180,0 z">
+            <#
+             _.each( settings.image_hover_effect_card, function( item, index ) { 
+                if( template_name == 'demo_one' ){ #>
+                    <a href="#" data-path-hover="m 180,34.57627 -180,0 L 0,0 180,0 z" class="elementor-repeater-item-{{{item.id}}}">
+                    <figure>
+                        <img src="{{{item.image.url}}}" />
+                        <svg viewBox="0 0 180 320" preserveAspectRatio="none"><path d="M 180,160 0,218 0,0 180,0 z"/></svg>
+                        <figcaption>
+                            <h2>{{{item.card_title}}}</h2>
+                            <p>{{{item.card_description}}}</p>
+                            <button>View</button>
+                        </figcaption>
+                    </figure>
+                </a>
+                <# }else if( template_name == 'demo_two' ){ #>
+                    <a href="#" data-path-hover="m 0,0 0,47.7775 c 24.580441,3.12569 55.897012,-8.199417 90,-8.199417 34.10299,0 65.41956,11.325107 90,8.199417 L 180,0 z">
 					<figure>
 						<img src="{{{item.image.url}}}" />
 						<svg viewBox="0 0 180 320" preserveAspectRatio="none"><path d="m 0,0 0,171.14385 c 24.580441,15.47138 55.897012,24.75772 90,24.75772 34.10299,0 65.41956,-9.28634 90,-24.75772 L 180,0 0,0 z"/></svg>
@@ -416,7 +451,20 @@ class Demo_Two extends Widget_Base
 						</figcaption>
 					</figure>
 				</a>
-			<# }) #>
+                <# }else if( template_name == 'demo_three' ){ #>
+                    <a href="#" data-path-hover="M 0,0 0,38 90,58 180.5,38 180,0 z">
+					<figure>
+						<img src="{{{item.image.url}}}" />
+						<svg viewBox="0 0 180 320" preserveAspectRatio="none"><path d="M 0 0 L 0 182 L 90 126.5 L 180 182 L 180 0 L 0 0 z "/></svg>
+						<figcaption>
+							<h2>{{{item.card_title}}}</h2>
+							<p>{{{item.card_description}}}</p>
+							<button>View</button>
+						</figcaption>
+					</figure>
+				</a>
+                <# } #>
+			 <# }) #>
 			</section>
 			</div>
 			<script>

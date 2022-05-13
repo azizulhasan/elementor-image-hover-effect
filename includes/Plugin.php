@@ -2,9 +2,7 @@
 namespace ImageHoverEffect;
 
 
-use ImageHoverEffect\Widgets\Demo_One;
-use ImageHoverEffect\Widgets\Demo_Two;
-use ImageHoverEffect\Widgets\Demo_Three;
+use ImageHoverEffect\Widgets\Image_Hovor_Effect;
 
 /**
  * Class Plugin
@@ -71,9 +69,7 @@ class Plugin {
 	 */
 	public function register_widgets( $widgets_manager ) {
 		// Register Widgets
-		$widgets_manager->register( new Widgets\Demo_One() );
-		$widgets_manager->register( new Widgets\Demo_Two() );
-		$widgets_manager->register( new Widgets\Demo_Three() );
+		$widgets_manager->register( new Widgets\Image_Hovor_Effect() );
 
 	}
 
