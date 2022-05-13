@@ -17,7 +17,7 @@ if (!defined('ABSPATH')) {
  *
  * @since 1.0.0
  */
-class Demo_One extends Widget_Base
+class demo_one extends Widget_Base
 {
 
     /**
@@ -111,6 +111,37 @@ class Demo_One extends Widget_Base
      */
     protected function register_controls()
     {
+
+        /**
+		 * Image Hover Effect Section
+		 */
+        $this->start_controls_section(
+            'hover_effect_section',
+            [
+                'label' => __('Effect Style', 'image-hover-effect'),
+                'tab' => Controls_Manager::TAB_CONTENT,
+            ]
+        );
+
+        $this->add_control(
+			'image_hover_effect_demos',
+			[
+				'label' => __( 'Hover Effect Demos', 'image-hover-effect' ),
+				'type' => Controls_Manager::SELECT,
+				'default' => plugin_dir_path( __DIR__ ). 'templates/render/demo_one.php',
+				'options' => [
+					plugin_dir_path( __DIR__ ). 'templates/render/demo_one.php'  => __( 'Demo One', 'image-hover-effect' ),
+					plugin_dir_path( __DIR__ ). 'templates/render/demo_two.php' => __( 'Demo Two', 'image-hover-effect' ),
+					plugin_dir_path( __DIR__ ). 'templates/render/demo_three.php' => __( 'Demo Three', 'image-hover-effect' )
+				],
+                'preview_template' => [
+                    plugin_dir_path( __DIR__ ). 'templates/preview/demo_one.php',
+                    plugin_dir_path( __DIR__ ). 'templates/preview/demo_two.php',
+                    plugin_dir_path( __DIR__ ). 'templates/preview/demo_three.php',
+                ]
+			]
+		);
+        $this->end_controls_section();
 		/**
 		 * Content
 		 */
@@ -155,7 +186,7 @@ class Demo_One extends Widget_Base
         );
 
         $this->add_control(
-            'material_card',
+            'image_hover_effect_card',
             [
                 'label' => __('Cards List', 'image-hover-effect'),
                 'type' => Controls_Manager::REPEATER,
@@ -338,22 +369,17 @@ class Demo_One extends Widget_Base
     {
         $settings = $this->get_settings_for_display();
 
-        if ($settings['material_card']) {
-            echo "<div class='demo-1'>";
+        if ($settings['image_hover_effect_card']) {
+            $path = explode( '/', $settings['image_hover_effect_demos'] );
+            $class_name = explode( '.', $path[count($path) -1 ] )[0];
+            // echo $class_name;
+            echo "<div class='{$class_name}'>";
             echo "<section id='grid' class='grid clearfix'>";
-            foreach ($settings['material_card'] as $item) {?>
-				<a href="#" data-path-hover="m 180,34.57627 -180,0 L 0,0 180,0 z" class="elementor-repeater-item-">
-					<figure>
-						<img src="<?php echo $item['image']['url'] ?>" />
-						<svg viewBox="0 0 180 320" preserveAspectRatio="none"><path d="M 180,160 0,218 0,0 180,0 z"/></svg>
-						<figcaption>
-							<h2><?php echo $item['card_title'] ?></h2>
-							<p><?php echo $item['card_description'] ?></p>
-							<button>View</button>
-						</figcaption>
-					</figure>
-				</a>
-			<?php }
+            foreach ($settings['image_hover_effect_card'] as $item) {
+
+                include ( $settings['image_hover_effect_demos']);
+                
+            }
             echo "</section>";
             echo "</div>";
         }?>
@@ -402,13 +428,39 @@ class Demo_One extends Widget_Base
     {
         ?>
 
-		<div class='demo-1'>
+		
+			<#
+            var lenght = settings.image_hover_effect_demos.split('/').length;
+            var template_name = settings.image_hover_effect_demos.split('/')[ lenght - 1 ];
+
+            console.log(settings.image_hover_effect_demos) 
+            var path = settings.image_hover_effect_demos.split('/').splice(0, lenght-1).join("/");
+            
+            var class_name = template_name.split('.')[0];
+            console.log(class_name) 
+            #>
+            
+            <div class='{{{class_name}}}'>
 			<section id='grid' class='grid clearfix'>
-			<# _.each( settings.material_card, function( item, index ) { #>
-				<a href="#" data-path-hover="m 180,34.57627 -180,0 L 0,0 180,0 z" class="elementor-repeater-item-{{{item.id}}}">
+            <#
+             _.each( settings.image_hover_effect_card, function( item, index ) { 
+                if( template_name = 'demo_one.php' ){ #>
+                    <a href="#" data-path-hover="m 180,34.57627 -180,0 L 0,0 180,0 z" class="elementor-repeater-item-{{{item.id}}}">
+                        <figure>
+                            <img src="{{{item.image.url}}}" />
+                            <svg viewBox="0 0 180 320" preserveAspectRatio="none"><path d="M 180,160 0,218 0,0 180,0 z"/></svg>
+                            <figcaption>
+                                <h2>{{{item.card_title}}}</h2>
+                                <p>{{{item.card_description}}}</p>
+                                <button>View</button>
+                            </figcaption>
+                        </figure>
+                    </a>
+                <# }else if( template_name = 'demo_two.php' ){ #>
+                    <a href="#" data-path-hover="m 0,0 0,47.7775 c 24.580441,3.12569 55.897012,-8.199417 90,-8.199417 34.10299,0 65.41956,11.325107 90,8.199417 L 180,0 z">
 					<figure>
 						<img src="{{{item.image.url}}}" />
-						<svg viewBox="0 0 180 320" preserveAspectRatio="none"><path d="M 180,160 0,218 0,0 180,0 z"/></svg>
+						<svg viewBox="0 0 180 320" preserveAspectRatio="none"><path d="m 0,0 0,171.14385 c 24.580441,15.47138 55.897012,24.75772 90,24.75772 34.10299,0 65.41956,-9.28634 90,-24.75772 L 180,0 0,0 z"/></svg>
 						<figcaption>
 							<h2>{{{item.card_title}}}</h2>
 							<p>{{{item.card_description}}}</p>
@@ -416,7 +468,20 @@ class Demo_One extends Widget_Base
 						</figcaption>
 					</figure>
 				</a>
-			<# }) #>
+                <# }else if( template_name = 'demo_three.php' ){ #>
+                    <a href="#" data-path-hover="M 0,0 0,38 90,58 180.5,38 180,0 z">
+					<figure>
+						<img src="{{{item.image.url}}}" />
+						<svg viewBox="0 0 180 320" preserveAspectRatio="none"><path d="M 0 0 L 0 182 L 90 126.5 L 180 182 L 180 0 L 0 0 z "/></svg>
+						<figcaption>
+							<h2>{{{item.card_title}}}</h2>
+							<p>{{{item.card_description}}}</p>
+							<button>View</button>
+						</figcaption>
+					</figure>
+				</a>
+                <# } #>
+			 <# }) #>
 			</section>
 			</div>
 			<script>
