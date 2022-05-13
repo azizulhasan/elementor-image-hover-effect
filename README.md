@@ -11,17 +11,13 @@ assets/
       
 includes
   /widgets/
-    /Demo_One.php
-    /Demo_Two.php
-    /Demo_Three.php
   Plugin.php
 index.php
 image-hover-effect.php
 
 ```
 ## How To Search:
-For now only 3 image hover effect added. You can search on Elementor widget search bar by keyword
-`image hover effect `.
+For now only 3 image hover effect added. You can search on Elementor widget search bar by keyword `image hover effect `.
 
 ## Demo: 
 ![Image Hover Effect](./assets/img/elementor_image_hover_effect_demo.png)

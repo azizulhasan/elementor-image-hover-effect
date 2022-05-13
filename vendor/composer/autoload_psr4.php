@@ -7,6 +7,5 @@ $baseDir = dirname($vendorDir);
 
 return array(
     'ImageHoverEffect\\Widgets\\' => array($baseDir . '/includes/widgets'),
-    'ImageHoverEffect\\PageSettings\\' => array($baseDir . '/includes/page-settings'),
     'ImageHoverEffect\\' => array($baseDir . '/includes'),
 );

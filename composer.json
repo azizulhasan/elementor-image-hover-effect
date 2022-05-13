@@ -3,7 +3,6 @@
     "autoload": {
         "psr-4": {
             "ImageHoverEffect\\": "includes",
-            "ImageHoverEffect\\PageSettings\\":"includes/page-settings",
             "ImageHoverEffect\\Widgets\\":"includes/widgets"
 
         }

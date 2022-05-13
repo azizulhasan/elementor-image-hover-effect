@@ -10,7 +10,6 @@ class ComposerStaticInit7b6d988f7e4ede752526a5a8777a6739
         'I' => 
         array (
             'ImageHoverEffect\\Widgets\\' => 25,
-            'ImageHoverEffect\\PageSettings\\' => 30,
             'ImageHoverEffect\\' => 17,
         ),
     );
@@ -19,10 +18,6 @@ class ComposerStaticInit7b6d988f7e4ede752526a5a8777a6739
         'ImageHoverEffect\\Widgets\\' => 
         array (
             0 => __DIR__ . '/../..' . '/includes/widgets',
-        ),
-        'ImageHoverEffect\\PageSettings\\' => 
-        array (
-            0 => __DIR__ . '/../..' . '/includes/page-settings',
         ),
         'ImageHoverEffect\\' => 
         array (
