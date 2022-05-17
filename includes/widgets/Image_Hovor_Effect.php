@@ -100,6 +100,17 @@ class Image_Hovor_Effect extends Widget_Base
         return [ 'ihe-component'];
     }
 
+
+    public function get_script_depends()
+    {
+
+        // wp_register_script( 'ihe-snap.svg-min', plugins_url( '../assets/js/snap.svg-min.js', __DIR__ ), [ 'jquery' ], false, true );
+		// wp_register_script( 'ihe-hover', plugins_url( '../assets/js/hovers.js', __DIR__ ), [  ], false, true );
+
+
+        return [ 'ihe-snap.svg-min', 'ihe-hover'];
+    }
+
     /**
      * Register the widget controls.
      *
@@ -362,47 +373,50 @@ class Image_Hovor_Effect extends Widget_Base
     protected function render()
     {
         $settings = $this->get_settings_for_display();
-
+        static $grid_id = 0;
+        $grid_id++;
         if ($settings['image_hover_effect_card']) {
 
             $render_path = plugin_dir_path( __DIR__ ). 'templates/render/';
-            echo "<div class='{$settings['image_hover_effect_demos']}'>";
-            echo "<section id='grid' class='grid clearfix'>";
+            $template_name = esc_html( $settings['image_hover_effect_demos'] );
+            echo "<div class='{$template_name}'>";
+            echo "<section id='grid-".$template_name."' class='grid clearfix'>";
             foreach ($settings['image_hover_effect_card'] as $item) {
-
-                include  $render_path.$settings['image_hover_effect_demos'] .'.php';
-                
+                $file = $render_path.$settings['image_hover_effect_demos'] .'.php';
+                if(validate_file($file)){
+                    include $file;
+                }
             }
             echo "</section>";
             echo "</div>";
         }?>
 		<script>
-			(function() {
+			// (function() {
 				
-				function init() {
-					var speed = 250,
-						easing = mina.easeinout;
+			// 	function init() {
+			// 		var speed = 250,
+			// 			easing = mina.easeinout;
 
-					[].slice.call ( document.querySelectorAll( '#grid > a' ) ).forEach( function( el ) {
-						var s = Snap( el.querySelector( 'svg' ) ), path = s.select( 'path' ),
-							pathConfig = {
-								from : path.attr( 'd' ),
-								to : el.getAttribute( 'data-path-hover' )
-							};
+			// 		[].slice.call ( document.querySelectorAll( '#grid > a' ) ).forEach( function( el ) {
+			// 			var s = Snap( el.querySelector( 'svg' ) ), path = s.select( 'path' ),
+			// 				pathConfig = {
+			// 					from : path.attr( 'd' ),
+			// 					to : el.getAttribute( 'data-path-hover' )
+			// 				};
 
-						el.addEventListener( 'mouseenter', function() {
-							path.animate( { 'path' : pathConfig.to }, speed, easing );
-						} );
+			// 			el.addEventListener( 'mouseenter', function() {
+			// 				path.animate( { 'path' : pathConfig.to }, speed, easing );
+			// 			} );
 
-						el.addEventListener( 'mouseleave', function() {
-							path.animate( { 'path' : pathConfig.from }, speed, easing );
-						} );
-					} );
-				}
+			// 			el.addEventListener( 'mouseleave', function() {
+			// 				path.animate( { 'path' : pathConfig.from }, speed, easing );
+			// 			} );
+			// 		} );
+			// 	}
 
-				init();
+			// 	init();
 
-			})();			
+			// })();			
 		</script>
 		<?php
 
@@ -424,7 +438,7 @@ class Image_Hovor_Effect extends Widget_Base
 		
 			<# var template_name = settings.image_hover_effect_demos#>
             <div class='{{{template_name}}}'>
-			<section id='grid' class='grid clearfix'>
+			<section id='grid-{{{template_name}}}' class='grid clearfix'>
             <#
              _.each( settings.image_hover_effect_card, function( item, index ) { 
                 if( template_name == 'demo_one' ){ #>
@@ -468,32 +482,32 @@ class Image_Hovor_Effect extends Widget_Base
 			</section>
 			</div>
 			<script>
-			(function() {
+			// (function() {
 				
-				function init() {
-					var speed = 250,
-						easing = mina.easeinout;
+			// 	function init() {
+			// 		var speed = 250,
+			// 			easing = mina.easeinout;
 
-					[].slice.call ( document.querySelectorAll( '#grid > a' ) ).forEach( function( el ) {
-						var s = Snap( el.querySelector( 'svg' ) ), path = s.select( 'path' ),
-							pathConfig = {
-								from : path.attr( 'd' ),
-								to : el.getAttribute( 'data-path-hover' )
-							};
+			// 		[].slice.call ( document.querySelectorAll( '#grid > a' ) ).forEach( function( el ) {
+			// 			var s = Snap( el.querySelector( 'svg' ) ), path = s.select( 'path' ),
+			// 				pathConfig = {
+			// 					from : path.attr( 'd' ),
+			// 					to : el.getAttribute( 'data-path-hover' )
+			// 				};
 
-						el.addEventListener( 'mouseenter', function() {
-							path.animate( { 'path' : pathConfig.to }, speed, easing );
-						} );
+			// 			el.addEventListener( 'mouseenter', function() {
+			// 				path.animate( { 'path' : pathConfig.to }, speed, easing );
+			// 			} );
 
-						el.addEventListener( 'mouseleave', function() {
-							path.animate( { 'path' : pathConfig.from }, speed, easing );
-						} );
-					} );
-				}
+			// 			el.addEventListener( 'mouseleave', function() {
+			// 				path.animate( { 'path' : pathConfig.from }, speed, easing );
+			// 			} );
+			// 		} );
+			// 	}
 
-				init();
+			// 	init();
 
-			})();			
+			// })();			
 		</script>
 		<?php
 	}

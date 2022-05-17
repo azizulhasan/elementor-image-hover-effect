@@ -9,7 +9,7 @@
  * http://www.codrops.com
  */
  (function() {
-	
+				
 	function init() {
 		var speed = 250,
 			easing = mina.easeinout;
@@ -33,4 +33,4 @@
 
 	init();
 
-})();
+})();	
