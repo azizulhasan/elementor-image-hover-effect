@@ -192,6 +192,21 @@ class Image_Hovor_Effect extends Widget_Base
             ]
         );
 
+        $repeater->add_control(
+			'button_url',
+			[
+				'label' => __( 'URL', 'image-hover-effect' ),
+				'type' => Controls_Manager::URL,
+				'placeholder' => __( 'https://linkedin.com', 'image-hover-effect' ),
+				'show_external' => true,
+				'default' => [
+					'url' => 'https://linkedin.com',
+					'is_external' => true,
+					'nofollow' => true,
+				],
+			]
+		);
+
         $this->add_control(
             'image_hover_effect_card',
             [
@@ -373,8 +388,6 @@ class Image_Hovor_Effect extends Widget_Base
     protected function render()
     {
         $settings = $this->get_settings_for_display();
-        static $grid_id = 0;
-        $grid_id++;
         if ($settings['image_hover_effect_card']) {
 
             $render_path = plugin_dir_path( __DIR__ ). 'templates/render/';
@@ -382,7 +395,7 @@ class Image_Hovor_Effect extends Widget_Base
             echo "<div class='{$template_name}'>";
             echo "<section id='grid-".$template_name."' class='grid clearfix'>";
             foreach ($settings['image_hover_effect_card'] as $item) {
-                $file = $render_path.$settings['image_hover_effect_demos'] .'.php';
+                $file = $render_path.$template_name .'.php';
                 if(validate_file($file)){
                     include $file;
                 }
@@ -449,7 +462,7 @@ class Image_Hovor_Effect extends Widget_Base
                         <figcaption>
                             <h2>{{{item.card_title}}}</h2>
                             <p>{{{item.card_description}}}</p>
-                            <button>View</button>
+							<button onclick="window.open('{{{item.button_url.url}}}, item.button_url.is_external )">View</button>
                         </figcaption>
                     </figure>
                 </a>
@@ -461,7 +474,7 @@ class Image_Hovor_Effect extends Widget_Base
 						<figcaption>
 							<h2>{{{item.card_title}}}</h2>
 							<p>{{{item.card_description}}}</p>
-							<button>View</button>
+							<button onclick="window.open('{{{item.button_url.url}}}, item.button_url.is_external )">View</button>
 						</figcaption>
 					</figure>
 				</a>
@@ -473,7 +486,7 @@ class Image_Hovor_Effect extends Widget_Base
 						<figcaption>
 							<h2>{{{item.card_title}}}</h2>
 							<p>{{{item.card_description}}}</p>
-							<button>View</button>
+							<button onclick="window.open('{{{item.button_url.url}}}, item.button_url.is_external )">View</button>
 						</figcaption>
 					</figure>
 				</a>

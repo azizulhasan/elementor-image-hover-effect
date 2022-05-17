@@ -2,6 +2,9 @@
     $url = esc_url( $item['image']['url'] );
     $title = esc_html( $item['card_title']  );
     $description = esc_html( $item['card_description']  );
+	$btn_url = esc_url( $item['button_url']['url']);
+    $target = $item['button_url']['is_external'] ? ' target="_blank"' : '';
+    $nofollow = $item['button_url']['nofollow'] ? ' rel="nofollow"' : '';
 ?>
 
 
@@ -12,7 +15,8 @@
 		<figcaption>
 			<h2><?php echo $title ?></h2>
             <p><?php echo $description ?></p>
-			<button>View</button>
+			<button onclick="window.location.href='<?php echo $btn_url
+             ?>'" >View</button>
 		</figcaption>
 	</figure>
 </a>
